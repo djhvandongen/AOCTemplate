@@ -1,7 +1,7 @@
 # AOCTemplate
 A template for Advent of Code in C#
 
-This template can be used by creating classes in the form of ```DayXX.cs```, where XX is in the range of 01 - 25. They also need to derive from ``Day.cs`` and implement both ``public override string SolvePartOne()`` and ``public override string SolvePartTwo``. Integrating such a class needs to be done through adding an entry in the ``AddDays()`` method in ``Program.cs``, as has been done with the example class.
+This template can be used by creating classes in the form of ```DayXX.cs```, where XX is in the range of 01 - 25. Observe that Days 1-9 need a 0 as prefix to obtain a two digit suffix to Day. They also need to derive from ``Day.cs`` and implement both ``public override string SolvePartOne()`` and ``public override string SolvePartTwo``. Integrating such a class needs to be done through adding an entry in the ``AddDays()`` method in ``Program.cs``, as has been done with the example class.
 
 Those classes should go in the Code folder.
 

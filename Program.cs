@@ -9,19 +9,37 @@ namespace AOC
         static void Main(string[] args)
         {
             AddDays();
-            PrintLine();
-            Console.WriteLine("| Day | Part 1 Answer | Part 1 Time | Part 2 Answer | Part 2 Time |");
+            PrintDoubleLine();
+            Console.WriteLine("|| Day | Part 1 Answer | Part 1 Time | Part 2 Answer | Part 2 Time ||");
             PrintLine();
 
             List<int> indexes = GetIndexes(args);
+            List<(float, float)> times = new List<(float, float)>();
             foreach(int id in indexes) 
             {
-                Days[id-1].Solve();
+                times.Add(Days[id-1].Solve());
             }
 
+            PrintDoubleLine();
+
+            List<float> firsts = new List<float>(), seconds = new List<float>();
+            foreach((float, float) time in times) 
+            {
+                firsts.Add(time.Item1);
+                seconds.Add(time.Item2);
+            }
+            float firstMean = GetMean(firsts);
+            float secondMean = GetMean(seconds);
+
+            string firstMeanStr = firstMean.ToString("0.000");
+            string secondMeanStr = secondMean.ToString("0.000");
+            Console.WriteLine("||                     | Part 1 Mean |               | Part 2 Mean ||");
             PrintLine();
+            Console.WriteLine(String.Format("||                     |{0,10} s |               |{1,10} s ||", firstMeanStr, secondMeanStr));
+            PrintDoubleLine();
         }
 
+        // Day N needs to added as Days[N - 1] = new DayN();
         static void AddDays() 
         {
             Days[0] = new Day01();
@@ -78,7 +96,20 @@ namespace AOC
 
         static void PrintLine() 
         {
-            Console.WriteLine("-------------------------------------------------------------------");
+            Console.WriteLine("---------------------------------------------------------------------");     
+        }
+        static void PrintDoubleLine() 
+        {
+            Console.WriteLine("=====================================================================");
+        }
+
+        static float GetMean(List<float> fs) 
+        {
+            float result = 0;
+            foreach(float f in fs) {
+                result += f;
+            }
+            return result / fs.Count;
         }
     }
 }

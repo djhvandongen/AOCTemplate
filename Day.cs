@@ -15,7 +15,7 @@ public class Day
         DayNumber = dayNumber;
     }
 
-    public void Solve() 
+    public (float, float) Solve() 
     {
         Reader reader = new Reader();
         Input = reader.Read(DayNumber);
@@ -24,29 +24,30 @@ public class Day
         sw.Start();
         string partOneAnswer = SolvePartOne();
         sw.Stop();
-        string partOneTime = sw.ElapsedMilliseconds.ToString("0.000");
+        string partOneTime = (0.001 * sw.ElapsedMilliseconds).ToString("0.000");
         sw.Reset();
 
         sw.Start();
         string partTwoAnswer = SolvePartTwo();
         sw.Stop();
-        string partTwoTime = sw.ElapsedMilliseconds.ToString("0.000");
+        string partTwoTime = (0.001 * sw.ElapsedMilliseconds).ToString("0.000");
         sw.Reset();
 
-        // Console.WriteLine(String.Format("|{0,4} |{1,14} |{2,9} ms |{3,14} |{4,9} ms |", DayNumber, partOneAnswer, partOneTime, partTwoAnswer, partTwoTime));
-        Console.Write(String.Format("|{0,4} |{1,14} |", DayNumber, partOneAnswer));
+        Console.Write(String.Format("||{0,4} |{1,14} |", DayNumber, partOneAnswer));
 
         Console.ForegroundColor = GetColor(partOneTime);
-        Console.Write(String.Format("{0,9}", partOneTime));
+        Console.Write(String.Format("{0,10}", partOneTime));
         Console.ForegroundColor = ConsoleColor.White;
-        Console.Write(" ms |");
+        Console.Write(" s |");
 
         Console.Write(String.Format("{0,14} |", partTwoAnswer));
 
         Console.ForegroundColor = GetColor(partTwoTime);
-        Console.Write(String.Format("{0,9}", partTwoTime));
+        Console.Write(String.Format("{0,10}", partTwoTime));
         Console.ForegroundColor = ConsoleColor.White;
-        Console.Write(" ms |\n");
+        Console.Write(" s ||\n");
+
+        return (float.Parse(partOneTime), float.Parse(partTwoTime));
     }
 
     private ConsoleColor GetColor(string time) 
