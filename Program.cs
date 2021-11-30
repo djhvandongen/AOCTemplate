@@ -44,6 +44,7 @@ namespace AOC
             // If not, iterate through all arguments and try to add them.
             foreach(string arg in args) 
             {
+                // We firstly want to find out if we're dealing with a single number.
                 if (int.TryParse(arg, out int nr)) 
                 {
                     if (nr < 1 || nr > 25) throw new ArgumentOutOfRangeException("Argument exceeds bounds of 1 - 25 inclusive");
@@ -51,7 +52,8 @@ namespace AOC
                     result.Add(nr);
                     continue;
                 }
-
+                
+                // The current argument is not a single number, so we want to process a range input.
                 string[] range = arg.Split("..");
                 if (range.Length != 2) throw new ArgumentException("Wrong input syntax. The syntax of X..Y is required, where X and Y are integers");
 
